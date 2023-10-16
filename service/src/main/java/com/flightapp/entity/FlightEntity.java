@@ -18,7 +18,7 @@ public class FlightEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "flight_number")
+    @Column(name = "flight_number", unique = true)
     private Long flightNumber;
     @Column(name = "from_airport")
     @Enumerated(EnumType.STRING)

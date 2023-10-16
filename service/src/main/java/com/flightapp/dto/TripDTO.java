@@ -22,5 +22,6 @@ public class TripDTO {
     @FutureOrPresent
     private LocalDateTime arrivalDate;
     private String tripStatus;
-    private FlightDTO flight;
+    private FlightDTO flightDTO;
+    private UserDTO userDTO;
 }

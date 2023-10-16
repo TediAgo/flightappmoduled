@@ -40,7 +40,10 @@ public class TripEntity {
     private TripStatus tripStatus;
     @ManyToOne
     @JoinColumn(name = "flight_id")
-    private FlightEntity flight;
+    private FlightEntity flightEntity;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity userEntity;
     @Column(name = "validity")
     private Boolean validity;
 }

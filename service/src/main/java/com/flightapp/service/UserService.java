@@ -14,5 +14,4 @@ public interface UserService {
 
     UserDTO createUser(UserDTO userDTO);
 
-    /*UserDTO createAdmin(Integer id);*/
 }

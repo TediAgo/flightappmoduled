@@ -3,6 +3,7 @@ package com.flightapp.entity;
 import com.flightapp.enums.Role;
 import com.flightapp.security.token.Token;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,6 +28,7 @@ public class UserEntity implements UserDetails {
     @Column(name = "last_name")
     private String lastName;
     @Column(name = "email", unique = true)
+    @Email
     private String email;
     @Column(name = "password")
     private String password;

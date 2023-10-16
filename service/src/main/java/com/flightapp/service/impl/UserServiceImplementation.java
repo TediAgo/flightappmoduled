@@ -3,9 +3,11 @@ package com.flightapp.service.impl;
 import com.flightapp.dto.UserDTO;
 import com.flightapp.entity.UserEntity;
 import com.flightapp.enums.Role;
+import com.flightapp.exception.NotFoundException;
 import com.flightapp.mapper.UserConverter;
 import com.flightapp.repository.UserRepository;
 import com.flightapp.service.UserService;
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,20 +18,21 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class UserServiceImplementation implements UserService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImplementation.class);
 
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Override
     public UserDTO getUser(Integer id) {
         if (userRepository.findById(id).isEmpty() || userRepository.findById(id).get().getValidity().equals(Boolean.FALSE)) {
             LOGGER.info("User not found.");
-            throw new RuntimeException("User not found.");
+            throw new NotFoundException("User not found.");
         }
         return UserConverter.convertUserEntityToDTO(userRepository.findById(id).get());
     }
@@ -68,16 +71,4 @@ public class UserServiceImplementation implements UserService {
         userRepository.save(user);
         return UserConverter.convertUserEntityToDTO(user);
     }
-
-    /*@Override
-    public UserDTO createAdmin(Integer id) {
-        if(userRepository.findById(id).isEmpty() || userRepository.findById(id).get().getValidity().equals(Boolean.FALSE)) {
-            LOGGER.info("User not found.");
-            throw new RuntimeException("User not found.");
-        }
-        UserEntity userToAdmin = userRepository.findById(id).get();
-        userToAdmin.setRole(Role.ADMIN);
-        userRepository.save(userToAdmin);
-        return UserConverter.convertUserEntityToDTO(userToAdmin);
-    }*/
 }
