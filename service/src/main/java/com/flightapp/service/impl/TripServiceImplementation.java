@@ -19,7 +19,6 @@ import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.ObjectUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,11 +30,8 @@ public class TripServiceImplementation implements TripService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TripServiceImplementation.class);
 
-    @Autowired
     private final TripRepository tripRepository;
-    @Autowired
     private final FlightRepository flightRepository;
-    @Autowired
     private final UserRepository userRepository;
 
 

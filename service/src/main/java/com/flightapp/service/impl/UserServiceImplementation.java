@@ -10,7 +10,6 @@ import com.flightapp.service.UserService;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +24,6 @@ public class UserServiceImplementation implements UserService {
 
     private final PasswordEncoder passwordEncoder;
 
-    @Autowired
     private final UserRepository userRepository;
 
     @Override

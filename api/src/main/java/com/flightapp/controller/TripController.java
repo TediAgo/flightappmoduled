@@ -3,8 +3,8 @@ package com.flightapp.controller;
 import com.flightapp.dto.TripDTO;
 import com.flightapp.security.token.TokenUtility;
 import com.flightapp.service.TripService;
+import lombok.AllArgsConstructor;
 import lombok.NonNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +13,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/trip")
+@AllArgsConstructor
 public class TripController {
 
-    @Autowired
-    private TripService tripService;
+    private final TripService tripService;
 
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
